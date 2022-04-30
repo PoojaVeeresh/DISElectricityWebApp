@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ElectricityWebApp.Models.CountryData>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>List of all countries</h1>
+
+<p>
+    <a asp-action="Create">Add Country</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CountryName)
+            </th>
+            <th>Action</th>
+            <th>Add Electricity Details</th>
+
+            <th>Electricity Details</th>
+
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CountryName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+            <td>
+                <a asp-action="AddDetails" asp-route-id="@item.ID" asp-route-Country="@item.CountryName">Add</a>
+               
+            </td>
+            <td>
+                <a asp-action="ElectricityDetails" asp-route-id="@item.ID" asp-route-countryname="@item.CountryName">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

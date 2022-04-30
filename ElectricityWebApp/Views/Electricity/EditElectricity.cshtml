@@ -1,0 +1,42 @@
+﻿@model ElectricityWebApp.Models.ElectricityDetails
+
+@{
+    ViewData["Title"] = "Edit Electricity Details";
+}
+
+<h1>Edit</h1>
+
+<h4>Country Electricity details (@TempData["country"])</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditElectricity">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="ID" />
+            <input type="hidden" asp-for="CountryID" />
+
+            <div class="form-group">
+                <label asp-for="Year" class="control-label"></label>
+                <input asp-for="Year" class="form-control" />
+                <span asp-validation-for="Year" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="UnitsConsumption" class="control-label"></label>
+                <input asp-for="UnitsConsumption" class="form-control" />
+                <span asp-validation-for="UnitsConsumption" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Update" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

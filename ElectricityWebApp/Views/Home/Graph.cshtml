@@ -1,0 +1,80 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<script type="text/javascript">
+
+    window.onload = function () {
+        LoadChart();
+    }
+
+    function LoadChart() {
+        var dataobject = {};
+        debugger;
+            $.ajax({
+                type: "POST",
+                url: "/Home/GetChartData",
+           data: JSON.stringify(dataobject),
+           contentType: "application/json;charset=utf-8",
+           dataType: "json",
+                success: function (r) {
+                    debugger;
+                var labels = r[0];
+                var series1 = r[1];
+                var data = {
+                   labels: r[0],
+                   datasets: [
+                      {
+                            label: "ountry1",
+                            fillColor: "#458B74",
+                            strokeColor: "#FCD209",
+                            pointColor: "#FF8C00",
+                           data: series1
+                       }
+                   ]
+               };
+              $("#dvChart").html("");
+                 var canvas = document.createElement('canvas');
+               $("#dvChart")[0].appendChild(canvas);
+
+               
+                var ctx = canvas.getContext('2d');
+               ctx.canvas.height = 300;
+               ctx.canvas.width = 500;
+                var lineChart = new Chart(ctx).Line(data, {
+                   bezierCurve: false
+               });
+            },
+           failure: function (response) {
+               alert('Therewas an error.');
+            }
+        });
+            
+        }
+
+</script>
+<style>
+    h5{
+    text-align:left;
+}
+</style>
+<div class="text-center">
+    <h1 class="display-4">Electricity Consumption Graph</h1>
+    <table>
+        <tr>
+            <td>
+                <div id="dvChart">
+                </div>
+            </td>
+            <td>
+                <div id="dvLegend">
+                </div>
+            </td>
+        </tr>
+    </table>
+<h5>X-Axis: Years</h5>
+<br />
+<h5>Y-Axis: Electricty Units Consumption</h5>
+    
+
+</div>
