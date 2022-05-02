@@ -52,9 +52,9 @@ namespace ElectricityWebApp.Controllers
             StringBuilder sb = new StringBuilder();
             List<object> chartData = new List<object>();
 
-            string NATIONAL_PARK_API_PATH = BASE_URL + "/?series_id=ELEC.GEN.ALL-AK-99.A&api_key=" + API_KEY + "&out=json";
+            string ElECTRICITY_API_PATH = BASE_URL + "/?series_id=ELEC.GEN.ALL-AK-99.A&api_key=" + API_KEY + "&out=json";
             System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;
-            using (var response = WebRequest.Create(NATIONAL_PARK_API_PATH).GetResponse()) //Saving the json response in database    
+            using (var response = WebRequest.Create(ElECTRICITY_API_PATH).GetResponse()) //Saving the json response in database    
             {
                 var dataStream = response.GetResponseStream();
                 var reader = new StreamReader(dataStream);
@@ -88,14 +88,14 @@ namespace ElectricityWebApp.Controllers
             return new JsonResult(chartData);
 
         }
-        public ActionResult SaveRecordInDb()  //This is used to get fetch records from API  and save data in database.    
+        public ActionResult SaveRecordInDb()  //This is used to get fetch records from API data.gov and save data in database.    
         {
            
             try
             {
-                string NATIONAL_PARK_API_PATH = BASE_URL + "/?series_id=ELEC.GEN.ALL-AK-99.A;ELEC.GEN.ALL-AK-98.A;ELEC.GEN.ALL-AK-97.A&api_key=" + API_KEY + "&out=json";
+                string ElECTRICITY_API_PATH = BASE_URL + "/?series_id=ELEC.GEN.ALL-AK-99.A;ELEC.GEN.ALL-AK-98.A;ELEC.GEN.ALL-AK-97.A&api_key=" + API_KEY + "&out=json";
                 System.Net.ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls;   
-            using (var response = WebRequest.Create(NATIONAL_PARK_API_PATH).GetResponse()) //Saving the json response in database    
+            using (var response = WebRequest.Create(ElECTRICITY_API_PATH).GetResponse()) //Saving the json response in database    
             {    
                 var dataStream = response.GetResponseStream();
         var reader = new StreamReader(dataStream);

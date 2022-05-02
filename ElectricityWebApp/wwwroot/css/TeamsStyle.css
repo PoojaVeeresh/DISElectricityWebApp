@@ -12,12 +12,14 @@ h1{
 }
 
 
+
+
     .list-team-members li {
         padding: 0px;
         margin: 20px;
         text-align: left;
         list-style-type: none;
-        display: inline-block;
+        display: ;
         transition-duration: .3s;
     }
 
